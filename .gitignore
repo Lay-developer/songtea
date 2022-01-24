@@ -1,0 +1,17 @@
+/build
+/android
+/.dart_tool
+/build
+/ios
+/test
+/web
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+analysis_options.yaml
+backup.lock
+pubspec.lock
+.idea/
+.metadata
+README.md
+road_care.iml
