@@ -36,6 +36,7 @@ class STTextFormField extends StatelessWidget {
   final bool isAutoCorrect;
   final bool isTextChange;
   final bool isObSecure;
+  final bool isSearch;
 
   final int inputFormatter;
   final String labelDesc;
@@ -72,6 +73,7 @@ class STTextFormField extends StatelessWidget {
       this.isAutoCorrect = true,
       this.isTextChange = false,
       this.isObSecure = false,
+      this.isSearch = false,
       this.inputFormatter = 50,
       this.labelDesc = '',
       this.labelColor = STColor.black,
@@ -99,7 +101,7 @@ class STTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextInputType _textInputType = TextInputType.text;
-    TextInputAction _textInputAction = TextInputAction.continueAction;
+    TextInputAction _textInputAction = TextInputAction.unspecified;
     TextStyle _style = STText.getTextStyle(
         fontFamily: STFontFamily.quicksan,
         fontSize: fontSize,
@@ -218,16 +220,26 @@ class STTextFormField extends StatelessWidget {
                 )
 
               // clear text
-              : IconButton(
-                  iconSize: !isTextChange
-                      ? 0
-                      : mainWidth * STSize.getDouble(STFontSize.medium),
-                  onPressed: () {
-                    controller?.clear();
-                  },
-                  color: ClsSTColor.getColor(color: STColor.grey),
-                  icon: const Icon(Icons.clear),
-                )
+              : isSearch
+                  ? Container(
+                      margin: EdgeInsets.only(top: mainWidth * 0.02),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const ImageIcon(AssetImage('images/search.png')),
+                        color: Colors.black,
+                        iconSize: mainWidth * wPaddingAll * 1.2,
+                      ),
+                    )
+                  : IconButton(
+                      iconSize: !isTextChange
+                          ? 0
+                          : mainWidth * STSize.getDouble(STFontSize.medium),
+                      onPressed: () {
+                        controller?.clear();
+                      },
+                      color: ClsSTColor.getColor(color: STColor.grey),
+                      icon: const Icon(Icons.clear),
+                    )
           : Container(),
       fillColor: ClsSTColor.getColor(
           color: (!enabled && textColor == STColor.white)

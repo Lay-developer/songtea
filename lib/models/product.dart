@@ -7,6 +7,7 @@ class Product {
   late String _description;
   late double _price;
   late String _image;
+  late String _cartImage;
   late int _discount;
 
   Product(
@@ -15,6 +16,7 @@ class Product {
       required Category category,
       String description = '',
       String image = '',
+      String cartImage = '',
       double price = 0.0,
       int discount = 0}) {
     _id = id;
@@ -23,6 +25,7 @@ class Product {
     _description = description;
     _price = price;
     _image = image;
+    _cartImage = cartImage;
     _discount = discount;
   }
 
@@ -34,6 +37,7 @@ class Product {
   String get description => _description;
   double get price => _price;
   String get image => _image;
+  String get cartImage => _cartImage;
   int get discount => _discount;
 
   ////////
@@ -44,6 +48,7 @@ class Product {
   set description(String value) => _description = description;
   set price(double value) => _price = price;
   set image(String value) => _image = image;
+  set cartImage(String value) => _cartImage = cartImage;
   set discount(int value) => _discount = discount;
 
   Product.map(dynamic obj) {
@@ -55,6 +60,7 @@ class Product {
         obj['description'] == null ? '' : obj['description'].toString();
     _price = obj['price'] == null ? 0.0 : double.parse(obj['price']);
     _image = obj['image'] == null ? '' : obj['image'].toString();
+    _cartImage = obj['cart_image'] == null ? '' : obj['cart_image'].toString();
     _discount =
         obj['discount'] == null ? 0 : int.parse(obj['discount'].toString());
   }
